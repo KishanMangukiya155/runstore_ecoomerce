@@ -5,6 +5,7 @@ class AddressView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     final checkOutController = Get.find<CheckOutController>();
     return Padding(
       padding: EdgeInsets.symmetric(

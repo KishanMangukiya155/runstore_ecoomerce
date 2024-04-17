@@ -7,8 +7,8 @@ class AppSizes {
   static late double width;
 
   static onInit(BuildContext context) {
-    height = MediaQuery.sizeOf(context).height;
-    width = MediaQuery.sizeOf(context).width;
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
   }
 
   // Use this size for appbar height

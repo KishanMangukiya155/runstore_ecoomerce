@@ -8,24 +8,31 @@ class PrimaryButton extends StatelessWidget {
     required this.text,
     required this.width,
     required this.onTap,
+    this.height,
+    this.newTextStyle,
   });
 
   final bool? isPrimary;
   final IconData? iconData;
   final String text;
   final double width;
+  final double? height;
+  final TextStyle? newTextStyle;
   final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      overlayColor: MaterialStatePropertyAll(
+        Colors.transparent,
+      ),
       child: Container(
-        height: AppSizes.height * 0.06,
+        height: height ?? AppSizes.height * 0.06,
         width: width,
         decoration: BoxDecoration(
           color: isPrimary! ? primaryColor : secondaryColor,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(50),
           border: Border.all(
             color: isPrimary! ? Colors.transparent : primaryColor,
           ),
@@ -43,11 +50,12 @@ class PrimaryButton extends StatelessWidget {
                     padding: EdgeInsets.only(top: 5),
                     child: Text(
                       text,
-                      style: Theme.of(context).textTheme.titleMedium!.apply(
-                            color: isPrimary! ? Colors.white : primaryColor,
-                            fontWeightDelta: 2,
-                            fontSizeFactor: 1.2,
-                          ),
+                      style: newTextStyle ??
+                          Theme.of(context).textTheme.titleMedium!.apply(
+                                color: isPrimary! ? Colors.white : primaryColor,
+                                fontWeightDelta: 2,
+                                fontSizeFactor: 1.2,
+                              ),
                     ),
                   ),
                 ],
@@ -55,11 +63,12 @@ class PrimaryButton extends StatelessWidget {
             : Center(
                 child: Text(
                   text,
-                  style: Theme.of(context).textTheme.titleMedium!.apply(
-                        color: isPrimary! ? Colors.white : primaryColor,
-                        fontWeightDelta: 2,
-                        fontSizeFactor: 1.2,
-                      ),
+                  style: newTextStyle ??
+                      Theme.of(context).textTheme.titleMedium!.apply(
+                            color: isPrimary! ? Colors.white : primaryColor,
+                            fontWeightDelta: 2,
+                            fontSizeFactor: 1.2,
+                          ),
                 ),
               ),
       ),

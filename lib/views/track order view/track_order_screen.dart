@@ -1,17 +1,16 @@
 // import 'package:easy_stepper/easy_stepper.dart';
 import 'package:runstore_ecoomerce/libraries.dart';
-import 'package:another_stepper/another_stepper.dart';
 
 class TrackOrderScreen extends StatelessWidget {
   const TrackOrderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final checkOutController = Get.find<CheckOutController>();
     return Scaffold(
       appBar: PreferredSize(
         child: AppbarWidget(
           title: "Track Order",
+          leadingCardButton: false,
           actionCardButton:
               CardButton(iconData: Icons.more_horiz, onTap: () {}),
         ),

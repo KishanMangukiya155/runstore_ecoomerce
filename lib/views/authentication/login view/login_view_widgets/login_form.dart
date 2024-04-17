@@ -1,5 +1,3 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../../libraries.dart';
 
 class LoginFormWidget extends StatelessWidget {
@@ -9,6 +7,7 @@ class LoginFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     final authController = Get.find<AuthController>();
     return Form(
       child: Column(
@@ -97,7 +96,29 @@ class LoginFormWidget extends StatelessWidget {
               ),
             );
           }),
-          SizedBox(height: AppSizes.extraVerticalPadding * 2),
+          Row(
+            children: [
+              Obx(() {
+                return Checkbox(
+                  value: authController.isRememberMe.value,
+                  checkColor: Colors.white,
+                  activeColor: primaryColor,
+                  onChanged: (value) {
+                    authController.setRememberMe();
+                  },
+                );
+              }),
+              Text(
+                "Remember Me",
+                style: Theme.of(context).textTheme.titleMedium!.apply(
+                      color: authController.isRememberMe.isTrue
+                          ? Colors.black54
+                          : Colors.black38,
+                    ),
+              ),
+            ],
+          ),
+          SizedBox(height: AppSizes.formVerticalSpace),
 
           PrimaryButton(
             text: "Sign In",

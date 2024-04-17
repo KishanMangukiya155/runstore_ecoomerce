@@ -5,6 +5,7 @@ class CatalogScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     final catalogController = Get.find<CatalogController>();
     return Scaffold(
       appBar: PreferredSize(
@@ -127,6 +128,7 @@ class CatalogScreen extends StatelessWidget {
           if (catalogController.catalogOptions.isNotEmpty) ...[
             ListView.separated(
               shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: catalogController.catalogOptions.length,
               itemBuilder: (context, index) {
                 return catalogController.catalogOptions[index];

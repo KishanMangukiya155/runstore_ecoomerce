@@ -25,6 +25,10 @@ export 'utility/widgets/product_cartList.dart';
 export 'utility/widgets/custom_list_tile.dart';
 export 'utility/widgets/advertisement_banner.dart';
 export 'utility/widgets/vertical_product_view.dart';
+export 'utility/widgets/customer_type_selection.dart';
+export 'utility/widgets/customer_type_widget.dart';
+export 'utility/widgets/custom_divider_widget.dart';
+export 'utility/widgets/custom_bottomsheet.dart';
 
 // ========================== Controller libraries ========================== //
 export 'controller/auth_controller.dart';
@@ -47,6 +51,7 @@ export 'models/catalog_banner_model.dart';
 export 'models/home_banner_model.dart';
 export 'models/advertising_banner.dart';
 export 'models/brand_model.dart';
+export 'models/shopping_cart_model.dart';
 
 // ================================ Views libraries ========================= //
 // On Boarding Screen
@@ -97,9 +102,15 @@ export 'views/root/root_screen.dart';
 
 // Shopping Cart view
 export 'views/shopping cart view/shopping_cart_screen.dart';
+export 'views/shopping cart view/empty_shopping_cart_widget.dart';
+export 'views/shopping cart view/shopping_cart_list_widget.dart';
 
 // Track order view
 export 'views/track order view/track_order_screen.dart';
+
+export 'views/wishlist view/wishlist_view.dart';
+export 'views/wishlist view/wishlist_screen.dart';
+export 'views/wishlist view/empty_wishlist_view.dart';
 
 // ================== packages/dependencies libraries ======================= //
 export 'package:get/get.dart';

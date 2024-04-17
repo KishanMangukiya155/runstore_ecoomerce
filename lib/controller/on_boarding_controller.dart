@@ -22,8 +22,5 @@ class OnBoardingScreenController extends GetxController {
   RxInt pageIndex = 0.obs;
   final pageController = PageController(initialPage: 0);
 
-  void setOnBoardingPageIndex(int value) {
-    pageIndex(value);
-    update();
-  }
+  void setOnBoardingPageIndex(int value) => pageIndex(value);
 }

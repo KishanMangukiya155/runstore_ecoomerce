@@ -8,6 +8,7 @@ ThemeData lightThemeData = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   textTheme: lightTextTheme,
   fontFamily: "Amiko",
+  primaryColor: Color(0xff545fc5),
   useMaterial3: true,
 );
 

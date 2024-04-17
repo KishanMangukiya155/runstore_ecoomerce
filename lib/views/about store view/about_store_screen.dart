@@ -5,6 +5,7 @@ class AboutStoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     return Scaffold(
       appBar: PreferredSize(
         child: AppbarWidget(

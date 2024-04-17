@@ -1,6 +1,5 @@
 import 'package:runstore_ecoomerce/libraries.dart';
 import 'package:runstore_ecoomerce/views/root/test_package.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({
@@ -9,6 +8,7 @@ class RootScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     final rootController = Get.find<RootController>();
     return Obx(() {
       return Scaffold(

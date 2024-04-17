@@ -5,6 +5,7 @@ class WishlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     final wishListController = Get.find<WishListController>();
     final rootController = Get.find<RootController>();
     return Scaffold(
@@ -12,138 +13,165 @@ class WishlistScreen extends StatelessWidget {
         child: AppbarWidget(
           title: "Wishlist",
           leadingCardButton: false,
-          actionCardButton: CardButton(
-            iconData: Icons.add,
-            onTap: () {
-              rootController.setNavigationIndex(
-                rootController.navigationIndex.toInt() - 2,
-              );
-            },
-          ),
         ),
         preferredSize: Size.fromHeight(AppSizes.appBarPreferredSize),
       ),
-      body: ListView(
-        physics: BouncingScrollPhysics(),
-        children: [
-          SizedBox(
-            height: AppSizes.height * 0.3,
-            child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: wishListController.listTile.length,
-              padding: EdgeInsets.only(top: AppSizes.defaultVerticalPadding),
+      body: Obx(
+        () {
+          if (wishListController.wishListProduct.isNotEmpty) {
+            return ListView.separated(
+              shrinkWrap: true,
+              itemCount: wishListController.wishListProduct.length,
+              padding: EdgeInsets.symmetric(
+                horizontal: AppSizes.extraHorizontalPadding,
+                vertical: AppSizes.extraVerticalPadding,
+              ),
+              physics: BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                final list = wishListController.listTile[index];
-                return Container(
-                  height: AppSizes.height * 0.08,
-                  child: list,
-                  margin: EdgeInsets.symmetric(
-                    vertical: AppSizes.defaultHeight / 3,
-                  ),
+                return buildWishListHorizontalWidget(
+                  context,
+                  wishListController.wishListProduct[index],
+                  wishListController,
                 );
               },
+              separatorBuilder: (context, index) {
+                return SizedBox(height: AppSizes.defaultHeight);
+              },
+            );
+          } else {
+            return EmptyWishlistWidget();
+          }
+        },
+      ),
+    );
+  }
+
+  Container buildWishListHorizontalWidget(
+    BuildContext context,
+    ProductModel productModel,
+    WishListController wishListController,
+  ) {
+    return Container(
+      height: AppSizes.height * 0.25,
+      width: AppSizes.width,
+      decoration: BoxDecoration(
+        color: primaryColor.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      padding: EdgeInsets.all(10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Product image
+          Container(
+            height: AppSizes.height * 0.23,
+            width: AppSizes.width * 0.25,
+            decoration: BoxDecoration(
+              color: primaryColor.withOpacity(0.3),
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(productModel.product_image),
+              ),
             ),
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: wishListController.cartList.length,
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              final length = wishListController.cartList.length;
-              final wishListProduct = wishListController.cartList[index];
-              return Container(
-                height: AppSizes.height * 0.2,
-                width: AppSizes.width,
-                margin: EdgeInsets.only(
-                  left: AppSizes.extraHorizontalPadding,
-                  right: AppSizes.extraHorizontalPadding,
-                  bottom: AppSizes.extraVerticalPadding,
+          SizedBox(width: AppSizes.defaultWidth * 3),
+
+          Expanded(
+            flex: 20,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Product name and Remove product
+                Text(
+                  productModel.product_name,
+                  style: Theme.of(context).textTheme.titleMedium!.apply(
+                        fontSizeFactor: 1.1,
+                      ),
                 ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+
+                // Product brief
+                Text(
+                  productModel.product_brief,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleMedium!.apply(
+                        fontSizeFactor: 0.9,
+                        fontWeightDelta: -5,
+                        color: Colors.black54,
+                      ),
+                ),
+
+                // Product Color, Size, Price
+                Row(
                   children: [
-                    // Product image
-                    Container(
-                      height: AppSizes.height * 0.17,
-                      width: AppSizes.width * 0.25,
-                      decoration: BoxDecoration(
-                        color: primaryColor.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+                    Text(
+                      "${productModel.product_color}, ",
+                      style: Theme.of(context).textTheme.titleSmall!.apply(
+                            color: primaryColor,
+                            fontSizeFactor: 1.2,
+                          ),
                     ),
-                    SizedBox(width: AppSizes.defaultWidth * 3),
-
-                    SizedBox(
-                      height: AppSizes.height * 0.17,
-                      width: AppSizes.width * 0.4,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          // Product name
-                          Text(
-                            wishListProduct.product_name,
-                            style:
-                                Theme.of(context).textTheme.titleMedium!.apply(
-                                      fontSizeFactor: 1.5,
-                                      fontWeightDelta: -2,
-                                    ),
+                    Text(
+                      productModel.product_size,
+                      style: Theme.of(context).textTheme.titleSmall!.apply(
+                            color: primaryColor,
+                            fontSizeFactor: 1.2,
                           ),
-
-                          // Product brief
-                          Text(
-                            wishListProduct.product_brief.replaceAll(" ", "\n"),
-                            style:
-                                Theme.of(context).textTheme.titleMedium!.apply(
-                                      fontSizeFactor: 1.1,
-                                      fontWeightDelta: -5,
-                                      color: Colors.black54,
-                                    ),
-                          ),
-
-                          // Product Color, Size
-                          Row(
-                            children: [
-                              Text(
-                                "${wishListProduct.product_color}, ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall!
-                                    .apply(
-                                      color: primaryColor,
-                                      fontSizeFactor: 1.2,
-                                    ),
-                              ),
-                              Text(
-                                wishListProduct.product_size,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall!
-                                    .apply(
-                                      color: primaryColor,
-                                      fontSizeFactor: 1.3,
-                                    ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
                     ),
                     Spacer(),
-
-                    // Product Price
                     Text(
-                      "\$${wishListProduct.product_price.toStringAsFixed(2)}",
+                      "\$${productModel.product_price.toStringAsFixed(2)}",
                       style: Theme.of(context).textTheme.titleSmall!.apply(
-                            color: Colors.black,
+                            color: Colors.black54,
                             fontSizeFactor: 1.35,
                             fontWeightDelta: 1,
                           ),
                     ),
                   ],
                 ),
-              );
-            },
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        wishListController.checkProduct(productModel);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(Colors.white),
+                      ),
+                      icon: Obx(() {
+                        var wishListContains = wishListController
+                            .wishListProduct
+                            .contains(productModel);
+                        return Icon(
+                          wishListContains
+                              ? Icons.favorite
+                              : Icons.favorite_outline,
+                          color: wishListContains
+                              ? Colors.redAccent
+                              : Colors.black54,
+                        );
+                      }),
+                    ),
+                    PrimaryButton(
+                      text: "Add to cart",
+                      height: AppSizes.height * 0.04,
+                      width: AppSizes.width * 0.4,
+                      newTextStyle:
+                          Theme.of(context).textTheme.titleSmall!.apply(
+                                color: Colors.white,
+                                fontSizeFactor: 1.2,
+                                fontWeightDelta: 2,
+                              ),
+                      onTap: () {},
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ],
       ),

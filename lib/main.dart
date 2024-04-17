@@ -1,9 +1,12 @@
-import 'package:runstore_ecoomerce/views/root/test_package.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'libraries.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.
+  ensureInitialized();
+  await GetStorage.init();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,16 +15,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSizes.onInit(context);
+    final get = GetStorage();
 
-    // return TestPackage();
+    print("${get.read("email")} ${get.read("password")}");
 
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: lightThemeData,
       darkTheme: darkThemeData,
       themeMode: ThemeMode.system,
-      home: LoginScreen(),
       initialBinding: AppControllersBindings(),
+      home: get.read("rememberMe") ?? false ? RootScreen() : LoginScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

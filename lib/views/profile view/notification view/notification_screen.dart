@@ -5,6 +5,7 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     List<Map<String, dynamic>> notifications = [
       {
         "notification_icon": PhosphorIcons.receipt,
@@ -46,6 +47,7 @@ class NotificationScreen extends StatelessWidget {
             iconData: PhosphorIcons.dots_three,
             onTap: () {},
           ),
+          leadingCardButton: false,
         ),
         preferredSize: Size.fromHeight(AppSizes.appBarPreferredSize),
       ),

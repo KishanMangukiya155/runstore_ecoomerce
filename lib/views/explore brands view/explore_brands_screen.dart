@@ -7,6 +7,7 @@ class ExploreBrandsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     final brandController = Get.find<BrandsController>();
     return Scaffold(
       appBar: PreferredSize(

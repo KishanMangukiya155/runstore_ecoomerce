@@ -5,6 +5,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
+    final authController = Get.find<AuthController>();
     List<Map<String, dynamic>> profileOptions = [
       {
         "leading": Icons.notifications_none,
@@ -47,6 +49,7 @@ class ProfileScreen extends StatelessWidget {
           actionCardButton: CardButton(
             iconData: Icons.logout,
             onTap: () {
+              authController.logOut();
               Get.offAll(() => LoginScreen());
             },
           ),
@@ -57,33 +60,51 @@ class ProfileScreen extends StatelessWidget {
         children: [
           SizedBox(height: AppSizes.defaultHeight / 1.2),
 
-          // Profile Picture
-          CircleAvatar(
-            radius: AppSizes.height * 0.08,
-            backgroundImage: AssetImage(AppImages.profile_pic),
-            backgroundColor: primaryColor.withOpacity(0.5),
+          // "User Profile" Container
+          Container(
+            margin: EdgeInsets.symmetric(
+              horizontal: AppSizes.defaultHorizontalPadding,
+            ),
+            padding: EdgeInsets.symmetric(
+              vertical: AppSizes.defaultVerticalPadding,
+              horizontal: AppSizes.defaultHorizontalPadding,
+            ),
+            decoration: BoxDecoration(
+              border: Border.all(color: primaryColor),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: CustomListTile(
+              changeLeadingWidget: true,
+              leadingWidget: Padding(
+                padding:
+                    EdgeInsets.only(right: AppSizes.defaultHorizontalPadding),
+                child: CircleAvatar(
+                  radius: AppSizes.height * 0.045,
+                  backgroundImage: AssetImage(AppImages.profile_pic),
+                  backgroundColor: Colors.grey,
+                ),
+              ),
+              title: "Vishal Rajpara",
+              subTitle: "+91 9878451285",
+              newTrailingWidget: IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  PhosphorIcons.note_pencil,
+                  color: primaryColor,
+                ),
+              ),
+            ),
           ),
-          SizedBox(height: AppSizes.defaultHeight),
-
-          // Username
-          Text(
-            "Vishal Rajpara",
-            style: Theme.of(context)
-                .textTheme
-                .titleSmall!
-                .apply(fontSizeFactor: 2.5, fontWeightDelta: -2),
-          ),
-          SizedBox(
-            height: AppSizes.height * 0.04,
-          ),
+          SizedBox(height: AppSizes.defaultHeight / 1.2),
 
           // Profile options list
           ListView.separated(
             itemCount: profileOptions.length,
             shrinkWrap: true,
-            physics: BouncingScrollPhysics(),
+            physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.symmetric(
-                horizontal: AppSizes.minorHorizontalPadding),
+              horizontal: AppSizes.defaultHorizontalPadding,
+            ),
             itemBuilder: (context, index) {
               return CustomListTile(
                 leadingIconData: profileOptions[index]["leading"],

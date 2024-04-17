@@ -6,6 +6,7 @@ class ConfirmationSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     return Material(
       child: SafeArea(
         child: Column(

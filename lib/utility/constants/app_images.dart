@@ -19,6 +19,9 @@ class AppImages {
   // Used in Confirmation Success Screen
   static String success_Animation = "assets/animation/Success_Animation.json";
 
+  static String emptyWishlist_Animation =
+      "assets/animation/Empty_wishlist.json";
+
   // Used in Home Screen
   static String home_banner = "assets/images/home_banner.jpg";
 

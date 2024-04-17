@@ -5,6 +5,7 @@ class AddressesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     final profileController = ProfileController();
 
     final InputBorder inputBorder = UnderlineInputBorder();
@@ -17,6 +18,7 @@ class AddressesScreen extends StatelessWidget {
             iconData: PhosphorIcons.dots_three,
             onTap: () {},
           ),
+          leadingCardButton: false,
         ),
         preferredSize: Size.fromHeight(AppSizes.appBarPreferredSize),
       ),

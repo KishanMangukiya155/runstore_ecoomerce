@@ -1,17 +1,20 @@
 // Note - project starting date 05/02/24
 
-create vertical listview widget of products.
-Make dynamic widget
+- Remember Me
+    Add "Remember me" functionality on login page
+    Once user logs in and activate the remember me
+    then each time the app opens not requires login.
 
+- Add the lottie animations (IF SUITABLE TO UI)
+    - OnBoarding screen
+        Add three screens with lottie animations
+        and some short descriptions about app.
 
-// modify in app
-1 : Remove all the leading button from the main page
-    of bottom navigation bar - COMPLETED
-2 : Update index values in checkout process and
-    disable step tap functionality - COMPLETED
-3 : download lottie json file and place in asset folder and
-    add path in pubspec.yaml
-        - Call Lottie.asset and set path in ui. - COMPLETED
-4 : remove the finish screen and place the dialog
-    functionality and place there 2 buttons (IF)
-5 : Complete Track order screen. (Incomplete Design).
+    - Shopping cart
+        Add the lottie animation in shopping cart if
+        the cart is empty.
+
+    - Wishlist Screen
+        Add the lottie animation in wish list if
+        the wish list is empty.
+

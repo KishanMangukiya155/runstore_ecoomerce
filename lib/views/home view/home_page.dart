@@ -1,3 +1,4 @@
+import 'package:get_storage/get_storage.dart';
 import 'package:runstore_ecoomerce/libraries.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -5,6 +6,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final get = GetStorage();
+    // print("${get.read("email")} ${get.read("password")}");
+    AppSizes.onInit(context);
     final homeController = Get.find<HomeController>();
     return Scaffold(
       appBar: PreferredSize(
@@ -15,14 +19,11 @@ class HomeScreen extends StatelessWidget {
             iconData: Icons.filter_alt_outlined,
             onTap: () {
               Get.bottomSheet(
-                BottomSheet(
-                  onClosing: () {},
-                  builder: (context) {
-                    return Container(
-                      height: AppSizes.height * 0.5,
-                      color: Colors.grey.shade50,
-                    );
-                  },
+                CustomBottomSheet(
+                  height: AppSizes.height * 0.23,
+                  childWidget: Column(
+                    children: [],
+                  ),
                 ),
               );
             },
@@ -35,70 +36,22 @@ class HomeScreen extends StatelessWidget {
         padding: EdgeInsets.only(
           left: AppSizes.defaultHorizontalPadding,
           right: AppSizes.defaultHorizontalPadding,
-          top: AppSizes.defaultVerticalPadding / 5,
+          top: AppSizes.defaultVerticalPadding,
           bottom: AppSizes.defaultVerticalPadding * 2,
         ),
         physics: BouncingScrollPhysics(),
         children: [
           // Customer type selection
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              homeController.customerTypeList.length,
-              (index) {
-                final customerType = homeController.customerTypeList[index];
-                return Obx(() {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: AppSizes.defaultWidth * 2,
-                      vertical: AppSizes.defaultHeight / 2,
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        homeController.customerType(index);
-                      },
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      child: index == homeController.customerType.value
-                          ? Card(
-                              shadowColor: primaryColor.withOpacity(0.4),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                                side: BorderSide(color: Colors.black12),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 5.0,
-                                  horizontal: 20.0,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    customerType,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .apply(
-                                          fontWeightDelta: -1,
-                                          fontSizeFactor: 1,
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            )
-                          : Text(customerType),
-                    ),
-                  );
-                });
-              },
-            ),
-          ),
-          SizedBox(height: AppSizes.defaultHeight / 2),
+          CustomerTypeWidget(),
+
+          SizedBox(height: AppSizes.defaultHeight),
 
           // Banners List
           if (homeController.banner.isNotEmpty) ...[
             ListView.separated(
               shrinkWrap: true,
               itemCount: homeController.banner.length,
+              physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 final banner = homeController.banner[index];
                 return ClipRRect(
@@ -122,6 +75,10 @@ class HomeScreen extends StatelessWidget {
           CustomListTile(
             leadingIconData: PhosphorIcons.fire,
             title: "New Arrivals",
+            newTrailingWidget: TextButton(
+              onPressed: () {},
+              child: Text("View all"),
+            ),
           ),
           SizedBox(height: AppSizes.defaultHeight),
 
@@ -142,6 +99,7 @@ class HomeScreen extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 return VerticalProductView(
+                  index: index,
                   productModel: homeController.allProducts[index],
                 );
               },
@@ -183,6 +141,7 @@ class HomeScreen extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 return VerticalProductView(
+                  index: index,
                   productModel: homeController.allProducts[index],
                 );
               },
@@ -194,6 +153,10 @@ class HomeScreen extends StatelessWidget {
           CustomListTile(
             leadingIconData: PhosphorIcons.star,
             title: "Most Popular",
+            newTrailingWidget: TextButton(
+              onPressed: () {},
+              child: Text("View all"),
+            ),
           ),
           SizedBox(height: AppSizes.defaultHeight),
 
@@ -214,6 +177,7 @@ class HomeScreen extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 return VerticalProductView(
+                  index: index,
                   productModel: homeController.allProducts[index],
                 );
               },

@@ -7,6 +7,7 @@ class CheckOutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     final checkOutController = Get.find<CheckOutController>();
     return Scaffold(
       appBar: PreferredSize(
@@ -20,6 +21,7 @@ class CheckOutScreen extends StatelessWidget {
                 Get.back();
               }
             },
+            // leadingCardButton: false,
             title: checkOutController
                     .checkOutProcess[checkOutController.checkoutIndex.value]
                 ["step"],
@@ -34,14 +36,13 @@ class CheckOutScreen extends StatelessWidget {
       body: Obx(() {
         return Column(
           children: [
-            SizedBox(height: AppSizes.defaultHeight / 2),
-
             // Stepper
             Container(
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
-                    color: Colors.black26,
+                    color: Colors.black12,
+                    width: 0.3,
                   ),
                 ),
               ),
@@ -115,7 +116,7 @@ class CheckOutScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             margin: EdgeInsets.only(
-              bottom: AppSizes.extraVerticalPadding * 2.3,
+              bottom: AppSizes.extraVerticalPadding * 2,
               left: AppSizes.extraHorizontalPadding * 1.6,
               right: AppSizes.extraHorizontalPadding * 1.6,
             ),

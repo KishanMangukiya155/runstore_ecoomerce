@@ -6,6 +6,7 @@ class TestPackage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     final rootController = Get.find<RootController>();
     return SalomonBottomBar(
       currentIndex: rootController.navigationIndex.value,
@@ -23,8 +24,8 @@ class TestPackage extends StatelessWidget {
 
         /// Catalog
         SalomonBottomBarItem(
-          activeIcon: Icon(Icons.list_alt),
-          icon: Icon(Icons.list_alt_outlined),
+          activeIcon: Icon(PhosphorIcons.notebook_fill),
+          icon: Icon(PhosphorIcons.notebook_light),
           title: Text("Catalog"),
           selectedColor: primaryColor,
         ),

@@ -5,6 +5,7 @@ class RegisterFormWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     final authController = Get.find<AuthController>();
     return Form(
       child: Column(

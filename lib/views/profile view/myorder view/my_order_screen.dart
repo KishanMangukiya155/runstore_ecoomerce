@@ -5,6 +5,7 @@ class MyOrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppSizes.onInit(context);
     List<Map<String, dynamic>> myOrders = [
       // 0 for cancel
       // 1 for onTheWay
@@ -55,6 +56,7 @@ class MyOrderScreen extends StatelessWidget {
             iconData: PhosphorIcons.dots_three,
             onTap: () {},
           ),
+          leadingCardButton: false,
         ),
         preferredSize: Size.fromHeight(AppSizes.appBarPreferredSize),
       ),
@@ -107,6 +109,8 @@ class MyOrderScreen extends StatelessWidget {
                     children: [
                       Text(
                         "Happy Birthday! 30% Off",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!

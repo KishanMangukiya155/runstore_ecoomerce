@@ -32,14 +32,12 @@ class BottomSheetContainer extends StatelessWidget {
             ),
           ),
           padding: EdgeInsets.symmetric(
-            horizontal: applyFormPadding!
-                ? AppSizes.defaultHorizontalPadding * 2.4
-                : AppSizes.defaultHorizontalPadding * 1.3,
+            horizontal: AppSizes.defaultHorizontalPadding * 2.4,
           ),
           child: childWidget,
         ),
         Positioned(
-          top: AppSizes.height * -0.14,
+          top: AppSizes.height * -0.12,
           left: isAppIconCenter!
               ? AppSizes.width / 2.65
               : appIconPositionFromLeft,

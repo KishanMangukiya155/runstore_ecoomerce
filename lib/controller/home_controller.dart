@@ -1,16 +1,36 @@
 import 'package:runstore_ecoomerce/libraries.dart';
 
+enum CustomerTypes { All, Men, Women, Kids }
+
 class HomeController extends GetxController {
   RxInt customerType = 0.obs;
+  RxInt homeFilterIndex = 0.obs;
+  Rx<CustomerTypes>? customerTypes = CustomerTypes.All.obs;
 
   List<String> customerTypeList = ["All", "Men", "Women", "Kids"];
 
-  // This is used to display advertisements on catalog screen
+  List<ListTile> homeFilterList = [
+    ListTile(
+      selectedColor: primaryColor,
+      title: Text("Popular"),
+      onTap: () {},
+    ),
+    ListTile(
+      title: Text("Newest"),
+      onTap: () {},
+    ),
+    ListTile(
+      title: Text("Recommended"),
+      onTap: () {},
+    ),
+  ];
+
+  // This is used to display advertisements on home screen
   List<HomeBannerModel> banner = [
     HomeBannerModel(image: AppImages.home_banner),
   ];
 
-  // This is used to display advertisements on catalog screen
+  // This is used to display advertisements on home screen
   List<AdvertisingBannerModel> advertisements = [
     AdvertisingBannerModel(
       title: "Free shipping over \$49",
@@ -28,8 +48,10 @@ class HomeController extends GetxController {
     ),
   ];
 
+  // This is used to display the products on home screen
   List<ProductModel> allProducts = [
     ProductModel(
+      category_name: "Clothing",
       product_image: AppImages.productImage1,
       product_name: "H&M",
       product_brief:
@@ -39,6 +61,7 @@ class HomeController extends GetxController {
       product_price: 40.00,
     ),
     ProductModel(
+      category_name: "Clothing",
       product_image: AppImages.productImage2,
       product_name: "Baon",
       product_brief:
@@ -48,6 +71,7 @@ class HomeController extends GetxController {
       product_price: 60.00,
     ),
     ProductModel(
+      category_name: "Clothing",
       product_image: AppImages.productImage3,
       product_name: "Burton Menswear",
       product_brief:
@@ -57,6 +81,7 @@ class HomeController extends GetxController {
       product_price: 40.00,
     ),
     ProductModel(
+      category_name: "Clothing",
       product_image: AppImages.productImage4,
       product_name: "Baon",
       product_brief:

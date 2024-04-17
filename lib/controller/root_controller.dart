@@ -1,6 +1,4 @@
 import 'package:runstore_ecoomerce/libraries.dart';
-import 'package:runstore_ecoomerce/views/wishlist%20view/wishlist_view.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class RootController extends GetxController {
   RxInt navigationIndex = 0.obs;
@@ -10,7 +8,7 @@ class RootController extends GetxController {
   List<Widget> navigationWidget = [
     HomeScreen(),
     CatalogScreen(),
-    CartScreen(),
+    ShoppingCartScreen(),
     WishlistScreen(),
     ProfileScreen(),
   ];

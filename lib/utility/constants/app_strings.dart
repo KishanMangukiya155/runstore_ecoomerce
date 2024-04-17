@@ -36,4 +36,10 @@ class AppStrings {
   static const String userAddress =
       "Jasmine Hampton, 438 Dark Spurt Avenue, San Fransisco, CA, 94528.";
   static const String thankYou = "Thank you for choosing our products!";
+
+  // Shopping cart screen Strings
+  static const String emptyCartBrief = "Let's find something\nspecial for you!";
+
+  static const emptyWishListString =
+      'Go to home and explore our interesting \nproducts and add to cart';
 }

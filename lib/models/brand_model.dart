@@ -1,4 +1,3 @@
-import 'package:runstore_ecoomerce/libraries.dart';
 
 class BrandModel {
   BrandModel({

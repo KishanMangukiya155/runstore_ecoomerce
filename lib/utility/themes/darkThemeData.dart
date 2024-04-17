@@ -8,6 +8,7 @@ ThemeData darkThemeData = ThemeData(
   scaffoldBackgroundColor: Colors.black,
   textTheme: darkTextTheme,
   fontFamily: "Amiko",
+  primaryColor: Color(0xff545fc5),
   useMaterial3: true,
 );
 
