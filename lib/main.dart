@@ -1,11 +1,16 @@
-import 'package:get_storage/get_storage.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 
 import 'libraries.dart';
 
 void main() async {
-  WidgetsFlutterBinding.
-  ensureInitialized();
-  await GetStorage.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseAppCheck.instance.activate(
+    webProvider: ReCaptchaV3Provider('recaptcha-v3-site-key'),
+    androidProvider: AndroidProvider.playIntegrity,
+  );
   runApp(MyApp());
 }
 
@@ -15,9 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSizes.onInit(context);
-    final get = GetStorage();
-
-    print("${get.read("email")} ${get.read("password")}");
+    final authController = Get.put(AuthController());
 
     return GetMaterialApp(
       title: 'Flutter Demo',
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
       darkTheme: darkThemeData,
       themeMode: ThemeMode.system,
       initialBinding: AppControllersBindings(),
-      home: get.read("rememberMe") ?? false ? RootScreen() : LoginScreen(),
+      home: authController.screenRedirect(),
       debugShowCheckedModeBanner: false,
     );
   }

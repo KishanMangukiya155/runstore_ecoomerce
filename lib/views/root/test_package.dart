@@ -24,8 +24,8 @@ class TestPackage extends StatelessWidget {
 
         /// Catalog
         SalomonBottomBarItem(
-          activeIcon: Icon(PhosphorIcons.notebook_fill),
-          icon: Icon(PhosphorIcons.notebook_light),
+          activeIcon: Icon(Icons.list_alt),
+          icon: Icon(Icons.list_alt_outlined),
           title: Text("Catalog"),
           selectedColor: primaryColor,
         ),

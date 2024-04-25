@@ -32,7 +32,7 @@ class PrimaryButton extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           color: isPrimary! ? primaryColor : secondaryColor,
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: isPrimary! ? Colors.transparent : primaryColor,
           ),

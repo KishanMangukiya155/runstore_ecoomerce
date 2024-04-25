@@ -1,3 +1,5 @@
+import 'package:runstore_ecoomerce/controller/signIn_controller.dart';
+
 import '../../../../libraries.dart';
 
 class LoginFormWidget extends StatelessWidget {
@@ -8,7 +10,7 @@ class LoginFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSizes.onInit(context);
-    final authController = Get.find<AuthController>();
+    final signInController = Get.find<SignInController>();
     return Form(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +26,7 @@ class LoginFormWidget extends StatelessWidget {
 
           // Email field
           TextFormField(
-            controller: authController.emailController,
+            controller: signInController.emailController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -56,8 +58,8 @@ class LoginFormWidget extends StatelessWidget {
           // Password field
           Obx(() {
             return TextFormField(
-              controller: authController.passwordController,
-              obscureText: authController.obscureText.value,
+              controller: signInController.passwordController,
+              obscureText: signInController.obscureText.value,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -82,10 +84,11 @@ class LoginFormWidget extends StatelessWidget {
                 ),
                 suffixIcon: IconButton(
                   onPressed: () {
-                    authController.changeObscureText();
+                    signInController
+                        .obscureText(!signInController.obscureText.value);
                   },
                   icon: Icon(
-                    authController.obscureText.isTrue
+                    signInController.obscureText.isTrue
                         ? PhosphorIcons.eye_closed_bold
                         : PhosphorIcons.eye_bold,
                     color: primaryColor.withOpacity(0.5),
@@ -96,35 +99,39 @@ class LoginFormWidget extends StatelessWidget {
               ),
             );
           }),
-          Row(
-            children: [
-              Obx(() {
-                return Checkbox(
-                  value: authController.isRememberMe.value,
-                  checkColor: Colors.white,
-                  activeColor: primaryColor,
-                  onChanged: (value) {
-                    authController.setRememberMe();
-                  },
-                );
-              }),
-              Text(
-                "Remember Me",
-                style: Theme.of(context).textTheme.titleMedium!.apply(
-                      color: authController.isRememberMe.isTrue
-                          ? Colors.black54
-                          : Colors.black38,
-                    ),
-              ),
-            ],
-          ),
+          // Row(
+          //   children: [
+          //     Obx(() {
+          //       return Checkbox(
+          //         value: signInController.isRememberMe.value,
+          //         checkColor: Colors.white,
+          //         activeColor: primaryColor,
+          //         onChanged: (value) {
+          //           signInController
+          //               .isRememberMe(!signInController.isRememberMe.value);
+          //         },
+          //       );
+          //     }),
+          //     Text(
+          //       "Remember Me",
+          //       style: Theme.of(context).textTheme.titleMedium!.apply(
+          //             color: signInController.isRememberMe.isTrue
+          //                 ? Colors.black54
+          //                 : Colors.black38,
+          //           ),
+          //     ),
+          //   ],
+          // ),
           SizedBox(height: AppSizes.formVerticalSpace),
 
           PrimaryButton(
             text: "Sign In",
             width: AppSizes.width - AppSizes.defaultVerticalPadding,
             onTap: () {
-              Get.offAll(() => RootScreen());
+              signInController.signInUser(
+                email: signInController.emailController.text.trim(),
+                password: signInController.passwordController.text.trim(),
+              );
             },
           ),
         ],

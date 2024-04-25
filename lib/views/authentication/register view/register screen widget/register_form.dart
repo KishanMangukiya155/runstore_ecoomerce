@@ -1,3 +1,6 @@
+
+import 'package:runstore_ecoomerce/controller/signUp_controller.dart';
+
 import '../../../../libraries.dart';
 
 class RegisterFormWidget extends StatelessWidget {
@@ -6,7 +9,7 @@ class RegisterFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSizes.onInit(context);
-    final authController = Get.find<AuthController>();
+    final signUpController = Get.find<SignUpController>();
     return Form(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +25,7 @@ class RegisterFormWidget extends StatelessWidget {
 
           // Full name field
           TextFormField(
-            controller: authController.fullNameController,
+            controller: signUpController.fullNameController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -52,7 +55,7 @@ class RegisterFormWidget extends StatelessWidget {
 
           // Email field
           TextFormField(
-            controller: authController.emailController,
+            controller: signUpController.emailController,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -82,7 +85,7 @@ class RegisterFormWidget extends StatelessWidget {
 
           // Phone Number
           TextFormField(
-            controller: authController.phoneNumber,
+            controller: signUpController.phoneNumber,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
@@ -114,8 +117,8 @@ class RegisterFormWidget extends StatelessWidget {
           // Password field
           Obx(() {
             return TextFormField(
-              controller: authController.passwordController,
-              obscureText: authController.obscureText.value,
+              controller: signUpController.passwordController,
+              obscureText: signUpController.obscureText.value,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -139,10 +142,11 @@ class RegisterFormWidget extends StatelessWidget {
                 ),
                 suffixIcon: IconButton(
                   onPressed: () {
-                    authController.changeObscureText();
+                    signUpController
+                        .obscureText(!signUpController.obscureText.value);
                   },
                   icon: Icon(
-                    authController.obscureText.isTrue
+                    signUpController.obscureText.isTrue
                         ? PhosphorIcons.eye_closed_bold
                         : PhosphorIcons.eye_bold,
                     color: primaryColor.withOpacity(0.5),
@@ -161,7 +165,12 @@ class RegisterFormWidget extends StatelessWidget {
             width: MediaQuery.sizeOf(context).width -
                 AppSizes.defaultVerticalPadding,
             onTap: () {
-              Get.to(() => VerificationScreen());
+              signUpController.registerUser(
+                email: signUpController.emailController.text.trim(),
+                password: signUpController.passwordController.text.trim(),
+                fullName: signUpController.fullNameController.text.trim(),
+                phoneNumber: signUpController.phoneNumber.text.trim(),
+              );
             },
           ),
         ],

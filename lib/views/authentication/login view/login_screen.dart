@@ -1,4 +1,3 @@
-import 'package:get_storage/get_storage.dart';
 import 'package:runstore_ecoomerce/libraries.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -6,8 +5,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final get = GetStorage();
-    print("${get.read("email")} ${get.read("password")}");
     AppSizes.onInit(context);
     return SafeArea(
       child: Scaffold(

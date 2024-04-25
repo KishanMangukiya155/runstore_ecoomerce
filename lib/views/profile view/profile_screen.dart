@@ -1,3 +1,4 @@
+import 'package:runstore_ecoomerce/controller/signIn_controller.dart';
 import 'package:runstore_ecoomerce/libraries.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -6,7 +7,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSizes.onInit(context);
-    final authController = Get.find<AuthController>();
+    final signInController = Get.find<SignInController>();
     List<Map<String, dynamic>> profileOptions = [
       {
         "leading": Icons.notifications_none,
@@ -49,8 +50,7 @@ class ProfileScreen extends StatelessWidget {
           actionCardButton: CardButton(
             iconData: Icons.logout,
             onTap: () {
-              authController.logOut();
-              Get.offAll(() => LoginScreen());
+              signInController.signOutUser();
             },
           ),
         ),

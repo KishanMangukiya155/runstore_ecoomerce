@@ -1,4 +1,3 @@
-import 'package:get_storage/get_storage.dart';
 import 'package:runstore_ecoomerce/libraries.dart';
 
 class HomeScreen extends StatelessWidget {

@@ -1,5 +1,30 @@
-// =========================== utility libraries =========================== //
+// ========================== Controller libraries ========================== //
+export 'controller/auth_controller.dart';
+export 'controller/theme_controller.dart';
+export 'controller/on_boarding_controller.dart';
+export 'controller/root_controller.dart';
+export 'controller/cart_controller.dart';
+export 'controller/checkout_controller.dart';
+export 'controller/profile_controller.dart';
+export 'controller/wishlist_controller.dart';
+export 'controller/catalog_controller.dart';
+export 'controller/home_controller.dart';
+export 'controller/brands_controller.dart';
 
+// ========================== Model libraries =============================== //
+export 'models/slider_model.dart';
+export 'models/product_model.dart';
+export 'models/userAddress_model.dart';
+export 'models/catalog_banner_model.dart';
+export 'models/home_banner_model.dart';
+export 'models/advertising_banner.dart';
+export 'models/brand_model.dart';
+export 'models/shopping_cart_model.dart';
+
+// ========================= Repository libraries ========================== //
+export 'repository/auth_repository.dart';
+
+// =========================== utility libraries =========================== //
 // general
 export 'utility/colors.dart';
 export 'utility/app_controller_bindings.dart';
@@ -29,29 +54,7 @@ export 'utility/widgets/customer_type_selection.dart';
 export 'utility/widgets/customer_type_widget.dart';
 export 'utility/widgets/custom_divider_widget.dart';
 export 'utility/widgets/custom_bottomsheet.dart';
-
-// ========================== Controller libraries ========================== //
-export 'controller/auth_controller.dart';
-export 'controller/theme_controller.dart';
-export 'controller/on_boarding_controller.dart';
-export 'controller/root_controller.dart';
-export 'controller/cart_controller.dart';
-export 'controller/checkout_controller.dart';
-export 'controller/profile_controller.dart';
-export 'controller/wishlist_controller.dart';
-export 'controller/catalog_controller.dart';
-export 'controller/home_controller.dart';
-export 'controller/brands_controller.dart';
-
-// ========================== Model libraries =============================== //
-export 'models/slider_model.dart';
-export 'models/product_model.dart';
-export 'models/userAddress_model.dart';
-export 'models/catalog_banner_model.dart';
-export 'models/home_banner_model.dart';
-export 'models/advertising_banner.dart';
-export 'models/brand_model.dart';
-export 'models/shopping_cart_model.dart';
+export 'utility/widgets/snackbars.dart';
 
 // ================================ Views libraries ========================= //
 // On Boarding Screen
@@ -119,5 +122,12 @@ export 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 export 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 export 'package:awesome_bottom_bar/widgets/inspired/inspired.dart';
 
-// ==== General libraries ====
+// ==== General libraries ==== //
+export 'firebase_options.dart';
+export 'package:firebase_core/firebase_core.dart';
+export 'package:firebase_storage/firebase_storage.dart';
+export 'package:firebase_auth/firebase_auth.dart';
+export 'package:cloud_firestore/cloud_firestore.dart';
+
+// ==== General libraries ==== //
 export 'package:flutter/material.dart';
