@@ -1,0 +1,108 @@
+// Note - project starting date 05/02/24
+
+
+// ============================ UPDATES IN UI ============================ //
+
+1 : Create 2 animation loader for app small, full page
+2 : Remove the dark mode.
+3 : Apply shimmer effects when necessary
+4 : Change the background color to grey and add
+    white color to product widget.
+5 : Remove the outer padding and adjust the UI.
+6 : Implement pull to refresh functionality.
+7 : Change the typo (MUST NECESSARY).
+
+=============================================================
+
+// Authentications
+// Sign in
+1 : Provide validations(such as emails, passwords,etc.)
+    according to field.
+2 : Provide third-party sign in.
+3 : Set toggle Remember me properly.
+
+// Register
+1: Add the phone verification through firebase phone auth.
+2: After otp verified display the success animations.
+3 : Create terms n conditions of use page each of one.
+
+=============================================================
+
+// Home page
+1 : Add username in appbar widget while login successfully
+
+2 : Implement Filter options
+    Add three of them
+    1: Popular
+    2: Newest
+    3: Recommendations
+
+3 : Create database according to which display the products
+    of selected segment button
+
+4 : Add the carousel effects on banner ads and also
+    add the indicators
+
+5 : Add the products on new arrivals and also change the
+    trailing widget to text button.
+
+6 : Create the product's description page while clicking on
+    the product.
+
+7 : Create advertisements products or sale list
+
+8 : Implement auto hide appbar and sticky searchbar.
+
+=============================================================
+
+// Catalog Screen
+1 : Create support page
+    Add contact us and customer care number for customers
+
+2 : FAQs
+    Add some basic questions and answer for customers
+    in context of client side thinking while shopping
+
+3 : About store
+    Add some basic information for shopping app
+
+4 : Add products to each categories in advertisement
+
+5 : Create page for Free shipping ads.
+
+6 : Implement search
+
+7 : Implement auto hide appbar and sticky searchbar.
+
+=============================================================
+
+// Shopping cart
+
+1 : Add amazon empty cart animation.
+
+2 : Add suggestion list below the animation.
+
+3 : When cart is empty remove the delete action button from
+    appbar widget.
+
+4 : Implement auto hide appbar and sticky searchbar.
+
+=============================================================
+
+// Wishlist
+
+1 : Create amazon's wishlist while wishlist is empty
+
+2 : Add popup dialog box for deleting the whole wishlist.
+
+=============================================================
+
+// Profile
+
+1 : Add tap functionality on user's card and also edit their
+    info.
+
+2 : Add the "Account settings" settings in options.
+
+
+

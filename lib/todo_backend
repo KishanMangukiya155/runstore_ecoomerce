@@ -1,0 +1,39 @@
+Database for the app
+
+// Client side module database
+1 : user
+    - user_id [pk]
+    - email
+    - password
+    - phone
+    - imageURL
+
+2 : product_category
+    - category_id [pk]
+    - category_name
+
+3 : brands
+    - category_id(s) [fk of product_category]
+    - brands_id [pk]
+    - brands_name
+
+4 : products
+    - category_id [fk of product_category]
+    - product_id [pk]
+    - brand_id [fk og brands]
+    - product_name
+    - product_description
+    - product_image(s)
+    - product_price
+
+5 : shopping_cart
+    - user_id [fk of user]
+    - shopping_cart_id [set user_id]
+    - shopping_cart_list
+
+6 : wishlist
+    - user_id [fk of user]
+    - wishlist_id [set user_id]
+    - wishlist
+
+

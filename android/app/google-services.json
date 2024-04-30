@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "418155321142",
+    "project_id": "runstore-9659f",
+    "storage_bucket": "runstore-9659f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418155321142:android:199bebefb341fc35eb4597",
+        "android_client_info": {
+          "package_name": "com.example.runstore_ecoomerce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGlJ_ugZWuohgw9YuajBa54eUXG-tJS2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
