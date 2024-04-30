@@ -1,5 +1,3 @@
-import 'package:runstore_ecoomerce/controller/signIn_controller.dart';
-
 import '../../../../libraries.dart';
 
 class LoginFormWidget extends StatelessWidget {
@@ -12,6 +10,7 @@ class LoginFormWidget extends StatelessWidget {
     AppSizes.onInit(context);
     final signInController = Get.find<SignInController>();
     return Form(
+      key: signInController.signInFormKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,7 +26,10 @@ class LoginFormWidget extends StatelessWidget {
           // Email field
           TextFormField(
             controller: signInController.emailController,
+            validator: (value) => Validations.validateEmail(
+                email: signInController.emailController.text),
             decoration: InputDecoration(
+              border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
@@ -38,6 +40,12 @@ class LoginFormWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
                   color: primaryColor,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  color: Colors.redAccent,
                 ),
               ),
               contentPadding: EdgeInsets.symmetric(
@@ -60,7 +68,10 @@ class LoginFormWidget extends StatelessWidget {
             return TextFormField(
               controller: signInController.passwordController,
               obscureText: signInController.obscureText.value,
+              validator: (value) => Validations.validatePassword(
+                  password: signInController.passwordController.text),
               decoration: InputDecoration(
+                border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
@@ -71,6 +82,12 @@ class LoginFormWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     color: primaryColor,
+                  ),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Colors.redAccent,
                   ),
                 ),
                 contentPadding: EdgeInsets.symmetric(
@@ -99,29 +116,7 @@ class LoginFormWidget extends StatelessWidget {
               ),
             );
           }),
-          // Row(
-          //   children: [
-          //     Obx(() {
-          //       return Checkbox(
-          //         value: signInController.isRememberMe.value,
-          //         checkColor: Colors.white,
-          //         activeColor: primaryColor,
-          //         onChanged: (value) {
-          //           signInController
-          //               .isRememberMe(!signInController.isRememberMe.value);
-          //         },
-          //       );
-          //     }),
-          //     Text(
-          //       "Remember Me",
-          //       style: Theme.of(context).textTheme.titleMedium!.apply(
-          //             color: signInController.isRememberMe.isTrue
-          //                 ? Colors.black54
-          //                 : Colors.black38,
-          //           ),
-          //     ),
-          //   ],
-          // ),
+
           SizedBox(height: AppSizes.formVerticalSpace),
 
           PrimaryButton(

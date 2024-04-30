@@ -8,6 +8,8 @@ class AppImages {
 
   // This image is used in user profile
   static String profile_pic = "assets/images/profile_pic.png";
+  static String network_Profile_pic =
+      "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
 
   // Images that are used in payment view of checkout process
   static String masterCard = "assets/images/payment_images/mastercard.png";

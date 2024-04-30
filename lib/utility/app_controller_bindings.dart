@@ -1,5 +1,3 @@
-import 'package:runstore_ecoomerce/controller/signIn_controller.dart';
-import 'package:runstore_ecoomerce/controller/signUp_controller.dart';
 import 'package:runstore_ecoomerce/libraries.dart';
 
 class AppControllersBindings implements Bindings {
@@ -21,5 +19,6 @@ class AppControllersBindings implements Bindings {
 
     // Repository
     Get.lazyPut(() => AuthRepository(), fenix: true);
+    Get.lazyPut(() => UserRepository(), fenix: true);
   }
 }

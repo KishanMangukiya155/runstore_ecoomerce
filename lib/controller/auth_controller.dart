@@ -5,7 +5,7 @@ class AuthController extends GetxController {
 
   @override
   void onInit() {
-    FirebaseAuth.instance.userChanges().listen((user) {
+    FirebaseAuth.instance.authStateChanges().listen((user) {
       currentUser.value = user;
     });
     super.onInit();

@@ -8,6 +8,7 @@ class CustomSnackBars {
       snackPosition: SnackPosition.BOTTOM,
       colorText: Colors.white,
       backgroundColor: Colors.red,
+      duration: const Duration(seconds: 2),
     );
   }
 
@@ -18,6 +19,7 @@ class CustomSnackBars {
       snackPosition: SnackPosition.BOTTOM,
       colorText: Colors.white,
       backgroundColor: Colors.green,
+      duration: const Duration(seconds: 2),
     );
   }
 
@@ -28,6 +30,7 @@ class CustomSnackBars {
       snackPosition: SnackPosition.BOTTOM,
       colorText: Colors.white,
       backgroundColor: Colors.deepOrange,
+      duration: const Duration(seconds: 2),
     );
   }
 
@@ -38,6 +41,7 @@ class CustomSnackBars {
       snackPosition: SnackPosition.BOTTOM,
       colorText: Colors.white,
       backgroundColor: primaryColor,
+      duration: const Duration(seconds: 2),
     );
   }
 }

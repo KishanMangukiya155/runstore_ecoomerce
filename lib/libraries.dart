@@ -10,6 +10,8 @@ export 'controller/wishlist_controller.dart';
 export 'controller/catalog_controller.dart';
 export 'controller/home_controller.dart';
 export 'controller/brands_controller.dart';
+export 'controller/signIn_controller.dart';
+export 'controller/signUp_controller.dart';
 
 // ========================== Model libraries =============================== //
 export 'models/slider_model.dart';
@@ -23,11 +25,14 @@ export 'models/shopping_cart_model.dart';
 
 // ========================= Repository libraries ========================== //
 export 'repository/auth_repository.dart';
+export 'repository/user_repository.dart';
 
 // =========================== utility libraries =========================== //
 // general
 export 'utility/colors.dart';
+export 'utility/firebase_exceptions.dart';
 export 'utility/app_controller_bindings.dart';
+export 'utility/validations.dart';
 
 // constants
 export 'utility/constants/app_sizes.dart';
@@ -54,7 +59,7 @@ export 'utility/widgets/customer_type_selection.dart';
 export 'utility/widgets/customer_type_widget.dart';
 export 'utility/widgets/custom_divider_widget.dart';
 export 'utility/widgets/custom_bottomsheet.dart';
-export 'utility/widgets/snackbars.dart';
+export 'utility/widgets/customSnackbars.dart';
 
 // ================================ Views libraries ========================= //
 // On Boarding Screen
@@ -96,6 +101,7 @@ export 'views/home view/home_page.dart';
 
 // Profile view
 export 'views/profile view/profile_screen.dart';
+export 'views/profile view/update_user_profile.dart';
 export 'views/profile view/notification view/notification_screen.dart';
 export 'views/profile view/myorder view/my_order_screen.dart';
 export 'views/profile view/adresses view/adresses_screen.dart';

@@ -1,11 +1,14 @@
 import 'package:runstore_ecoomerce/libraries.dart';
 
+import '../forgot password view/forgot_password_screen.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     AppSizes.onInit(context);
+    final signInController = Get.find<SignInController>();
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -24,6 +27,17 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: AppSizes.formVerticalSpace * 2),
               // Login Form
               LoginFormWidget(),
+
+              // Forgot Password
+              TextButton(
+                onPressed: () {
+                  Get.to(
+                    () => ForgotPasswordScreen(),
+                    transition: Transition.rightToLeft,
+                  );
+                },
+                child: Text("Forgot Password"),
+              ),
               SizedBox(height: AppSizes.formVerticalSpace * 1.5),
 
               // "or sign in with" text
@@ -57,7 +71,9 @@ class LoginScreen extends StatelessWidget {
                     isPrimary: false,
                     text: "Google",
                     width: AppSizes.width * 0.37,
-                    onTap: () {},
+                    onTap: () {
+                      signInController.signInWithGoogle();
+                    },
                   ),
                 ],
               ),

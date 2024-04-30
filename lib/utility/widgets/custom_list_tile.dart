@@ -26,6 +26,7 @@ class CustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     // return buildListTile(context);
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // Leading Icon or Widget
         changeLeadingWidget!
@@ -48,26 +49,33 @@ class CustomListTile extends StatelessWidget {
                 ),
               ),
 
+        SizedBox(width: AppSizes.defaultWidth),
         // Title or (SubTitle - condition)
         subTitle != null
-            ? Column(
-                children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleSmall!.apply(
-                          fontSizeFactor: 1.4,
-                          fontWeightDelta: 1,
-                          color:
-                              Theme.of(context).brightness == Brightness.light
-                                  ? Colors.black
-                                  : secondaryColor,
-                        ),
-                  ),
-                  SizedBox(height: AppSizes.height * 0.005),
-                  Text(
-                    subTitle!,
-                  ),
-                ],
+            ? Flexible(
+                flex: 15,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.titleSmall!.apply(
+                            fontSizeFactor: 1.4,
+                            fontWeightDelta: 1,
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Colors.black
+                                    : secondaryColor,
+                          ),
+                    ),
+                    SizedBox(height: AppSizes.height * 0.005),
+                    Text(
+                      subTitle!,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               )
             : Text(
                 title,
@@ -92,52 +100,6 @@ class CustomListTile extends StatelessWidget {
               ),
             ),
       ],
-    );
-  }
-
-  ListTile buildListTile(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: AppSizes.defaultHorizontalPadding / 2,
-      ),
-      leading: changeLeadingWidget!
-          ? leadingWidget
-          : Container(
-              decoration: BoxDecoration(
-                color: primaryColor.withOpacity(0.07),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              padding: applyPaddingOnIcon ?? EdgeInsets.all(10),
-              child: Icon(
-                leadingIconData,
-                size: AppSizes.height * 0.033,
-                color: Theme.of(context).brightness == Brightness.light
-                    ? primaryColor
-                    : secondaryColor,
-              ),
-            ),
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.titleSmall!.apply(
-              fontSizeFactor: 1.4,
-              fontWeightDelta: 1,
-              color: Theme.of(context).brightness == Brightness.light
-                  ? Colors.black
-                  : secondaryColor,
-            ),
-      ),
-      subtitle: Text(
-        subTitle ?? "",
-      ),
-      trailing: newTrailingWidget ??
-          IconButton(
-            onPressed: onPressed,
-            icon: Icon(
-              Icons.arrow_forward,
-              size: AppSizes.height * 0.03,
-              color: primaryColor,
-            ),
-          ),
     );
   }
 }

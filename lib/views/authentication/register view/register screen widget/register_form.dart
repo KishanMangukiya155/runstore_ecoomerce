@@ -1,5 +1,5 @@
-
 import 'package:runstore_ecoomerce/controller/signUp_controller.dart';
+import 'package:runstore_ecoomerce/utility/validations.dart';
 
 import '../../../../libraries.dart';
 
@@ -11,6 +11,7 @@ class RegisterFormWidget extends StatelessWidget {
     AppSizes.onInit(context);
     final signUpController = Get.find<SignUpController>();
     return Form(
+      key: signUpController.registerFormKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,7 +27,11 @@ class RegisterFormWidget extends StatelessWidget {
           // Full name field
           TextFormField(
             controller: signUpController.fullNameController,
+            validator: (value) {
+              return Validations.emptyField("FullName", value);
+            },
             decoration: InputDecoration(
+              border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
@@ -37,6 +42,12 @@ class RegisterFormWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
                   color: primaryColor,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  color: Colors.redAccent,
                 ),
               ),
               contentPadding: EdgeInsets.symmetric(
@@ -56,7 +67,10 @@ class RegisterFormWidget extends StatelessWidget {
           // Email field
           TextFormField(
             controller: signUpController.emailController,
+            validator: (value) => Validations.validateEmail(
+                email: signUpController.emailController.text),
             decoration: InputDecoration(
+              border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
@@ -67,6 +81,12 @@ class RegisterFormWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
                   color: primaryColor,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  color: Colors.redAccent,
                 ),
               ),
               contentPadding: EdgeInsets.symmetric(
@@ -85,9 +105,13 @@ class RegisterFormWidget extends StatelessWidget {
 
           // Phone Number
           TextFormField(
-            controller: signUpController.phoneNumber,
+            controller: signUpController.phoneNumberController,
+            maxLength: 10,
+            validator: (value) => Validations.validatePhone(
+                phoneNumber: signUpController.phoneNumberController.text),
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
+              border: OutlineInputBorder(),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
@@ -98,6 +122,12 @@ class RegisterFormWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
                   color: primaryColor,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide(
+                  color: Colors.redAccent,
                 ),
               ),
               contentPadding: EdgeInsets.symmetric(
@@ -118,8 +148,12 @@ class RegisterFormWidget extends StatelessWidget {
           Obx(() {
             return TextFormField(
               controller: signUpController.passwordController,
+              validator: (value) => Validations.validatePassword(
+                password: signUpController.passwordController.text,
+              ),
               obscureText: signUpController.obscureText.value,
               decoration: InputDecoration(
+                border: OutlineInputBorder(),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
@@ -130,6 +164,12 @@ class RegisterFormWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(
                     color: primaryColor,
+                  ),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                    color: Colors.redAccent,
                   ),
                 ),
                 contentPadding: EdgeInsets.symmetric(
@@ -165,12 +205,7 @@ class RegisterFormWidget extends StatelessWidget {
             width: MediaQuery.sizeOf(context).width -
                 AppSizes.defaultVerticalPadding,
             onTap: () {
-              signUpController.registerUser(
-                email: signUpController.emailController.text.trim(),
-                password: signUpController.passwordController.text.trim(),
-                fullName: signUpController.fullNameController.text.trim(),
-                phoneNumber: signUpController.phoneNumber.text.trim(),
-              );
+              signUpController.userSignUp();
             },
           ),
         ],
